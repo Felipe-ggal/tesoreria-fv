@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#000000">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="Tesorería FV">
+<title>Tesorería Fernández Vial</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" href="icon-192.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<style>
+  html,body{margin:0;height:100%;background:#000;overflow:hidden}
+  iframe{position:fixed;inset:0;width:100%;height:100%;border:0;background:#F4F5F2}
+  #portada{position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;
+    background:#000;color:#fff;font-family:Arial,sans-serif;text-align:center;padding:24px;transition:opacity .3s}
+  #portada img{width:120px;height:120px}
+  #portada p{margin:0;color:#cfcfcf;font-size:16px}
+  #portada.listo{opacity:0;pointer-events:none}
+</style>
+</head>
+<body>
+<iframe id="app" title="Tesorería Fernández Vial" allow="camera; clipboard-write"
+  src="https://script.google.com/macros/s/AKfycbyqxL_6mdgAUD4602r6sjxXu9gcDZQUq8MT2jhJzU6-MtBZ7V6tnmuQGvoENRPDr7Medg/exec"></iframe>
+<div id="portada">
+  <img src="icon-192.png" alt="Escudo Academia Oficial A. Fernández Vial">
+  <p id="msg">Cargando la tesorería del club…</p>
+</div>
+<script>
+  const portada = document.getElementById('portada');
+  document.getElementById('app').addEventListener('load', () => portada.classList.add('listo'));
+  if (!navigator.onLine) document.getElementById('msg').textContent =
+    'Sin internet. La app necesita señal para abrir; conéctate y vuelve a intentar.';
+  window.addEventListener('online', () => location.reload());
+  if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js');
+</script>
+</body>
+</html>
