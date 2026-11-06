@@ -1,6 +1,6 @@
 // Guarda la portada y los íconos para que la app abra rápido.
 // Los datos de tesorería siempre se leen en línea desde la planilla.
-const CACHE = 'tesoreria-fv-v1';
+const CACHE = 'tesoreria-fv-v2';
 const ARCHIVOS = ['./', 'index.html', 'manifest.webmanifest', 'icon-192.png', 'icon-512.png', 'apple-touch-icon.png'];
 self.addEventListener('install', e => {
   e.waitUntil(caches.open(CACHE).then(c => c.addAll(ARCHIVOS)).then(() => self.skipWaiting()));
